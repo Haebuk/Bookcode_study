@@ -59,6 +59,8 @@
 
 [멜론 노래추천 dialogflow](http://www.kwangsiklee.com/2018/01/%EA%B5%AC%EA%B8%80-ai-%ED%94%8C%EB%9E%AB%ED%8F%BC-dialogflow-%EB%88%88%EC%9C%BC%EB%A1%9C-%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B0-%EB%B0%B0%EC%9A%B0%EA%B8%B0/)
 
+[카카오톡챗봇 연동](https://dialogflow.cloud.google.com/#/editAgent/bookcode-ccex/)
+
 ## 1. Intent
 
 어떤 인텐트를 넣을까?
@@ -89,13 +91,16 @@
   - ex) "A책과 비슷한 책을 추천해줘''
     - A 책을 찾기위해 dialogflow와 DB를 어떻게 연결할 것인지
     - 크롤링을 통한 DB 구축보다는 API 활용하는게 쉬워보임
-- 두 가지 이상의 키워드를 동시에 물어볼 경우 어떻게 할 것인가?
+  
+- ~~ 두 가지 이상의 키워드를 동시에 물어볼 경우 어떻게 할 것인가?
+  
   - ex) "B 작가의 C 책과 비슷한 책을 추천해줘"
     - 두 가지 인텐트가 동시에 존재할 때 어떻게 처리할 것인가?
-      - [컨텍스트](https://cloud.google.com/dialogflow/es/docs/contexts-input-output) 활용
+      - [컨텍스트](https://cloud.google.com/dialogflow/es/docs/contexts-input-output) 활용 
+  
 - 예외항이 존재할 경우?
   - ex) "B 작가의 책을 추천해줘, 대신 D 책은 말고"
-    - D 책에 대한 예외처리를 어떻게 할 것인가?
+    - D 책에 대한 예외처리를 어떻게 할 것인가? ~~
 
 - 커스텀 엔터티 만들기
 
@@ -105,10 +110,28 @@
 
       작가 이름 뿐만 아니라 도서 이름, 장르도 해당
 
-- 사용자가 잘못 입력한 경우
+- ~~사용자가 잘못 입력한 경우
+  
   - ex) "북코드 작가의 책을 추천해줘" 대신 "붘코드 작가의 책을 추천해줘"라고 입력한 경우
     - 검색 결과가 없다고 응답할 것인지? 북코드 작가로 인식해서 출력할 것인지?
-      - [퍼지 일치 사용?](https://cloud.google.com/dialogflow/es/docs/entities-fuzzy)
+      - [퍼지 일치 사용?](https://cloud.google.com/dialogflow/es/docs/entities-fuzzy)~~
+  
 - 엔터티 리스트
   - 방대한 도서/ 작가/ 장르를 하나하나 엔터티 항목에 채우기란 불가능
     - [엔터티 내보내기 및 가져오기](https://cloud.google.com/dialogflow/es/docs/entities-export) 
+  
+- 다른 작가 추천
+
+  - ex) "A작가와 비슷한 작가 추천해줘"
+    - 도서만 추천하므로 미구현을 안내할 것인가? 비슷한 작가가 쓴 책을 안내할 것인가?
+
+- 현재까지 구현한 것은 도서 검색 서비스와 유사함
+
+  - 유저와의 상호작용을 통해 유저의 성향을 파악할 수 있는 부분을 구현해야함
+
+- 장르 추천
+
+  - ex)"소설 추천해줘"
+    - 소설안에서도 장르가 다양하기 때문에 한 번 더 물어봐야함.
+    - ex) 어떤 장르의 소설을 추천해드릴까요?
+
